@@ -1,0 +1,4 @@
+[submodule "soplex"]
+	path = soplex
+	url = https://github.com/scipopt/soplex.git
+	tag = v7.1.0
