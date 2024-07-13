@@ -1,6 +1,6 @@
 use cmake::Config;
 
-fn main() {
+fn build_and_link_soplex() {
     // build soplex library with cmake
     let dst = Config::new("soplex")
         .define("GMP", "off")
@@ -13,6 +13,13 @@ fn main() {
     println!("cargo:rustc-link-search={}/lib64", dst.display());
     println!("cargo:rustc-link-lib=dylib=soplexshared");
     println!("cargo:rustc-link-lib=z");
+}
+
+fn main() {
+    // skip building soplex on docs.rs
+    if std::env::var("DOCS_RS").is_err() {
+        build_and_link_soplex();
+    }
 
     // generate bindings
     let bindings = bindgen::Builder::default()
