@@ -4,6 +4,8 @@ version = "0.1.2"
 edition = "2021"
 description = "FFI bindings to the SoPlex LP solver"
 license = "Apache-2.0"
+repository = "https://github.com/mmghannam/soplex-sys"
+links = "soplex"
 
 [build-dependencies]
 bindgen = "0.69.4"
