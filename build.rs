@@ -1,8 +1,13 @@
+use std::env;
 use cmake::Config;
 
 fn build_and_link_soplex() {
+    let profile = env::var("PROFILE").unwrap();
+    let build_type = if profile == "release" { "Release" } else { "Debug" };
+
     // build soplex library with cmake
     let dst = Config::new("soplex")
+        .profile(build_type)
         .define("GMP", "off")
         .define("BOOST", "off")
         .define("QUADMATH", "off")
