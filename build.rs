@@ -18,7 +18,15 @@ fn build_and_link_soplex() {
     println!("cargo:rustc-link-search={}/lib64", dst.display());
     println!("cargo:rustc-link-lib=static=soplex");
     println!("cargo:rustc-link-lib=z");
-    println!("cargo:rustc-link-lib=c++");
+    let target = env::var("TARGET").unwrap();
+    let apple = target.contains("apple");
+    let linux = target.contains("linux");
+    let mingw = target.contains("pc-windows-gnu");
+    if apple {
+        println!("cargo:rustc-link-lib=dylib=c++");
+    } else if linux || mingw {
+        println!("cargo:rustc-link-lib=dylib=stdc++");
+    }
 }
 
 fn main() {
