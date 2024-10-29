@@ -14,10 +14,11 @@ fn build_and_link_soplex() {
         .define("PAPILO", "off")
         .build();
 
-    println!("cargo:rustc-link-search={}/lib", dst.display());
+    println!("cargo:rustc-link-search=native={}/lib", dst.display());
     println!("cargo:rustc-link-search={}/lib64", dst.display());
-    println!("cargo:rustc-link-lib=dylib=soplexshared");
+    println!("cargo:rustc-link-lib=static=soplex");
     println!("cargo:rustc-link-lib=z");
+    println!("cargo:rustc-link-lib=c++");
 }
 
 fn main() {
