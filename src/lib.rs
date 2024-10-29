@@ -11,7 +11,7 @@ mod tests {
     #[test]
     fn basic() {
         //create a soplex problem
-        let mut soplex = unsafe { SoPlex_create() };
+        let soplex = unsafe { SoPlex_create() };
         assert!(!soplex.is_null());
     }
 }
